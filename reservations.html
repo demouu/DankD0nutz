@@ -32,7 +32,6 @@
 		</div>
 
         <div class="card text-left">
-          <img class="card-img-top" src="holder.js/100px180/" alt="">
           <div class="card-body">
             <h4 class="card-title">Make Reservation</h4>
             <form role="form">
@@ -73,5 +72,42 @@
     src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
+    <script>
+    class Reservation {
+    constructor(name, phone, email, id){
+    this.name = name,
+    this.phone = phone,
+    this.email = email,
+    this.id = id
+}
+    getName(){
+        return this.name;
+    }
+    getPhone(){
+        return this.phone;
+    }
+    getEmail(){
+        return this.email;
+    }
+    getId(){
+        return this.id;
+    }
+}
+
+var reservationsArray = [];
+
+        $(".submit").on("click", function (event) {
+            event.preventDefault();
+            name = $("#reserve_name").val().trim();
+            phone = $("#reserve_phone").val().trim();
+            email = $("#reserve_email").val().trim();
+            id = $("#reserve_uniqueID").val().trim();
+            var reservation = new Reservation(name, phone, email, id);
+            reservationsArray.push(reservation);
+            var currentURL = window.location.origin;
+            $.post(currentURL + "/api/tables", reservationsArray);
+        })
+        
+    </script>
 </body>
 </html>
