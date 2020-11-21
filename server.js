@@ -1,3 +1,4 @@
+const { response } = require('express');
 var express = require('express');
 var path = require('path');
 var app = express();
@@ -28,11 +29,14 @@ app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'home.html'));
 });
 app.get('/reservations', function(req, res){
-    res.sendFile(path.join(__dirname, 'reserve.html'));
+    res.sendFile(path.join(__dirname, 'reservations.html'));
 });
 app.get('/tables', function(req, res){
     res.sendFile(path.join(__dirname, 'tables.html'));
 });
+app.get('/api/tables', function(req, res){
+    res.sendFile(path.join(__dirname, 'api/tables.json'));
+})
 app.post('/postTable', function(req, res){
     var newTable = new Table(req.body.name, req.body.number, req.body.email, req.body.id);
     tableList.push(newTable);
