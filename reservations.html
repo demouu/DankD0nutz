@@ -94,18 +94,15 @@
     }
 }
 
-var reservationsArray = [];
-
         $(".submit").on("click", function (event) {
             event.preventDefault();
-            name = $("#reserve_name").val().trim();
-            phone = $("#reserve_phone").val().trim();
-            email = $("#reserve_email").val().trim();
-            id = $("#reserve_uniqueID").val().trim();
+            let name = $("#reserve_name").val().trim();
+            let phone = $("#reserve_phone").val().trim();
+            let email = $("#reserve_email").val().trim();
+            let id = $("#reserve_uniqueID").val().trim();
             var reservation = new Reservation(name, phone, email, id);
-            reservationsArray.push(reservation);
             var currentURL = window.location.origin;
-            $.post(currentURL + "/api/tables", reservationsArray).then(function (data) {
+            $.post(currentURL + "/api/postTable", reservation).then(function (data) {
                 console.log(data);
             });
         })

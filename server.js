@@ -35,12 +35,12 @@ app.get('/tables', function(req, res){
     res.sendFile(path.join(__dirname, 'tables.html'));
 });
 app.get('/api/tables', function(req, res){
-    res.sendFile(path.join(__dirname, 'api/tables.json'));
-})
-app.post('/postTable', function(req, res){
+    return res.json(tableList);
+});
+app.post('/api/postTable', function(req, res){
     var newTable = new Table(req.body.name, req.body.number, req.body.email, req.body.id);
     tableList.push(newTable);
-    console.log()
+    console.log(tableList);
 })
 app.listen(PORT, function() {
     console.log('App Listening on: http://localhost:'+PORT);
