@@ -1,4 +1,3 @@
-const { response } = require('express');
 var express = require('express');
 var path = require('path');
 var app = express();
@@ -15,10 +14,10 @@ class Table {
     }
 }
 let tab1 = new Table('God', '666-6969', 'dogbackwards@heaven.com', "52");
-let tab2 = new Table('Stan', '123-4567', 'stanLover@shady.com', "101");
+let tab2 = new Table('Stan', '123-4567', 'slimLover@shady.com', "101");
 let tab3 = new Table('Bobbert', '111-1111', 'BobbertBobbity@aver.com', "1");
 let tab4 = new Table('Dope!', '420-4202', 'Dank@doobie.com', "420");
-let tab5 = new Table('Druck Carl', '999-6611', 'brewsky@beer.com', "17");
+let tab5 = new Table('Drunk Carl', '999-6611', 'brewsky@beer.com', "17");
 tableList.push(tab1);
 tableList.push(tab2);
 tableList.push(tab3);
@@ -34,14 +33,19 @@ app.get('/reservations', function(req, res){
 app.get('/tables', function(req, res){
     res.sendFile(path.join(__dirname, 'tables.html'));
 });
-app.get('/api/tables', function(req, res){
-    return res.json(tableList);
-});
 app.post('/api/postTable', function(req, res){
     var newTable = new Table(req.body.name, req.body.number, req.body.email, req.body.id);
     tableList.push(newTable);
     console.log(tableList);
 })
+app.get('/api/tables', function(req, res){
+    let resTables = tableList.slice(0,5);
+    return res.json(resTables);
+})
+app.get('/api/waitlist', function(req, res){
+    let waitTables = tableList.slice(5, tableList.length);
+    return res.json(waitTables);
+})
 app.listen(PORT, function() {
     console.log('App Listening on: http://localhost:'+PORT);
-})
+});
