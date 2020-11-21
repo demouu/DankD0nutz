@@ -14,10 +14,10 @@ class Table {
     }
 }
 let tab1 = new Table('God', '666-6969', 'dogbackwards@heaven.com', "52");
-let tab2 = new Table('Stan', '123-4567', 'slimLover@shady.com', "101");
+let tab2 = new Table('Stan', '123-4567', 'stanLover@shady.com', "101");
 let tab3 = new Table('Bobbert', '111-1111', 'BobbertBobbity@aver.com', "1");
 let tab4 = new Table('Dope!', '420-4202', 'Dank@doobie.com', "420");
-let tab5 = new Table('Drunk Carl', '999-6611', 'brewsky@beer.com', "17");
+let tab5 = new Table('Druck Carl', '999-6611', 'brewsky@beer.com', "17");
 tableList.push(tab1);
 tableList.push(tab2);
 tableList.push(tab3);
@@ -27,7 +27,7 @@ console.log(tableList);
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'home.html'));
 });
-app.get('/reserve', function(req, res){
+app.get('/reservations', function(req, res){
     res.sendFile(path.join(__dirname, 'reserve.html'));
 });
 app.get('/tables', function(req, res){
